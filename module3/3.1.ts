@@ -12,4 +12,9 @@
       this.sound = sound;
     }
   }
+
+  const dog = new Amimal('German Shepard', 'dog', 'Ghe w Ghew');
+  const cat = new Amimal('Persian', 'cat', 'miw miw');
+
+  //
 }
