@@ -1,6 +1,6 @@
 {
 // op - inheritence
-  class parent {
+  class person {
     name: string;
     age: number;
     address: string;
@@ -18,7 +18,7 @@
 
 
 
-  class Student extends parent {
+  class Student extends person {
    
 
     constructor(name: string, age: number, address: string) {
@@ -29,27 +29,19 @@
   const student1 = new Student('Mr. Student', 20, 'Uganda');
   student1.
 
-  class Teacher {
-    name: string;
-    age: number;
-    address: string;
-    designation: string;
+class Teacher extends person {
+  designation: string; 
 
-    constructor(name: string, age: number, address: string, designation: string) {
-      this.name = name;
-      this.age = age;
-      this.address = address;
-      this.designation = designation;
-    }
-
-    getSleep(numOfHours: number) {
-      console.log(`${this.name} will sleep for ${numOfHours}`);
-    }
-
-    takeClass(numOfClass: number) {
-      console.log(`${this.name} will take ${numOfClass}`);
-    }
+  constructor(name: string, age: number, address: string, designation: string) {
+    super(name, age, address);
+    this.designation = designation;
   }
+
+  takeClass(numOfClass: number) {
+    console.log(`${this.name} will take ${numOfClass}`);
+  }
+}
+
 
   const teacher = new Teacher('Mr. Teacher', 40, 'Uganda', 'profecher');
   teacher.
