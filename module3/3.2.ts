@@ -1,50 +1,36 @@
-{
-  //type guards
+// ✅ সাধারন ইউজারের টাইপ
+type NormalUser = {
+  name: string;
+};
 
-  //typeOf ===> type guard
+// ✅ অ্যাডমিন ইউজারের টাইপ, অতিরিক্ত একটি 'role' প্রপার্টি আছে
+type AdminUser = {
+  name: string;
+  role: 'admin';
+};
 
-  type Alphaneumeric = string | number;
+// ✅ এই ফাংশনটি ইউজারের তথ্য নিবে এবং যদি সে অ্যাডমিন হয় তাহলে নাম দেখাবে
+const getUser = (user: NormalUser | AdminUser) => {
+  // যদি ইউজারের মধ্যে 'role' প্রপার্টি থাকে, তাহলে ধরে নেওয়া যায় সে অ্যাডমিন
+  if ('role' in user) {
+    console.log(`I am admin. My name is ${user.name}`);
+  } else {
+    // যদি 'role' না থাকে, তাহলে সে সাধারন ইউজার
+    console.log(`I am normal user. My name is ${user.name}`);
+  }
+};
 
-  const add = (
-    param1: string | number,
-    param2: string | number
-  ): string | number => {
-    if (typeof param1 === 'number' && typeof param2 === 'number') {
-      return param1 + param2;
-    } else {
-      return param1.toString() + param2.toString();
-    }
-  };
-  const result1 = add(3, 5);
-  console.log(result1);
+// ✅ একটি সাধারন ইউজার তৈরি করা হয়েছে
+const normalUser: NormalUser = {
+  name: 'mr Normal vai',
+};
 
-  //iN guard
+// ✅ একটি অ্যাডমিন ইউজার তৈরি করা হয়েছে
+const adminUser: AdminUser = {
+  name: 'mr Admin vai',
+  role: 'admin',
+};
 
-  type NormalUser = {
-    name: string;
-  };
-  type AdminUser = {
-    name: string;
-    role: 'admin';
-  };
-
-  const getUser = (user: NormalUser | AdminUser) => {
-    if ('role' in user) {
-      console.log(`My name is ${user.name} my rool is ${user.role}`);
-    } else {
-      console.log(`I am normal user. My name is ${user.name}`);
-    }
-  };
-
-  const normalUser: NormalUser = {
-    name: 'mr Normal vai',
-  };
-  const adminUser: AdminUser = {
-    name: 'mr Admin vai',
-    role: 'admin',
-  };
-
-  getUser(adminUser);
-
-  //
-}
+// ✅ ফাংশন কল করা হচ্ছে
+getUser(normalUser); // 👉 আউটপুট: I am normal user. My name is mr Normal vai
+getUser(adminUser); // 👉 আউটপুট: I am admin. My name is mr Admin vai
